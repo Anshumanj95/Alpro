@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">GenrateQRCode</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name">Product Name</string>
+    <string name="code">Product Code</string>
+    <string name="redeem">Redeem Value</string>
+    <string name="status">Status</string>
+    <string name="generate" translatable="false">GENERATE</string>
+    <string name="print" translatable="false">PRINT</string>
+</resources>

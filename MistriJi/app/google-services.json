@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "110757511762",
+    "project_id": "generateqrcode-eee76",
+    "storage_bucket": "generateqrcode-eee76.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110757511762:android:4e11a40fcfff36da7f958b",
+        "android_client_info": {
+          "package_name": "com.example.genrateqrcode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "110757511762-ebk38bl0kmem7tr1f0vdmvsv8o0cahb6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNV_1QLyT5-LG0kgAj_TWC_S6uMwXwH9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "110757511762-ebk38bl0kmem7tr1f0vdmvsv8o0cahb6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110757511762:android:5ccd9f525ae8d0447f958b",
+        "android_client_info": {
+          "package_name": "com.example.mistriji"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "110757511762-ebk38bl0kmem7tr1f0vdmvsv8o0cahb6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNV_1QLyT5-LG0kgAj_TWC_S6uMwXwH9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "110757511762-ebk38bl0kmem7tr1f0vdmvsv8o0cahb6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
