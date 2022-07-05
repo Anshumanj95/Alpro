@@ -1,5 +1,6 @@
 package com.example.mistriji
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -9,11 +10,13 @@ import com.example.mistriji.databinding.AdapterBinding
 
 class QRAdapter:RecyclerView.Adapter<QRAdapter.QRViewHolder>() {
     inner class QRViewHolder(private val binding: AdapterBinding): RecyclerView.ViewHolder(binding.root){
+        @SuppressLint("SetTextI18n")
         fun bind(qrInfo: QRInfo){
             binding.apply {
                 name.text = qrInfo.name
                 code.text=qrInfo.code
                 reward.text=qrInfo.redeem
+                date.text=qrInfo.date.toString().substring(8,10)+" "+qrInfo.date.toString().substring(4,7)+" "+qrInfo.date.toString().substring(30)
             }
         }
     }

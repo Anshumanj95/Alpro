@@ -40,6 +40,7 @@
             android:layout_margin="20dp"
             app:cardCornerRadius="10dp">
             <LinearLayout
+                android:background="@drawable/bg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -48,10 +49,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/btw_item"
                     android:text="Product Name"
+                    android:fontFamily="@font/ubuntu"
                     android:textAlignment="center"
                     android:textSize="16sp"/>
                 <TextView
                     android:id="@+id/name"
+                    android:fontFamily="@font/ubuntu_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Product name"
@@ -61,6 +64,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu"
                     android:layout_marginTop="@dimen/btw_item"
                     android:text="Product Code"
                     android:textAlignment="center"
@@ -68,6 +72,7 @@
                 <TextView
                     android:id="@+id/code"
                     android:layout_width="match_parent"
+                    android:fontFamily="@font/ubuntu_bold"
                     android:layout_height="wrap_content"
                     android:text="Product Code"
                     android:layout_marginTop="@dimen/btw_item"
@@ -77,22 +82,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Reward Value"
+                    android:fontFamily="@font/ubuntu"
                     android:textAlignment="center"
                     android:layout_marginTop="@dimen/btw_item"
                     android:textSize="16sp"/>
                 <TextView
                     android:id="@+id/reward"
+                    android:fontFamily="@font/ubuntu_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Reward Value"
                     android:layout_marginTop="@dimen/btw_item"
                     android:textAlignment="center"
                     android:textSize="18sp"/>
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/claim"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.MyApp.Button.Rounded"
+                    android:backgroundTint="#FFEE58"
+                    android:textColor="@color/secondaryTextColor"
+                    android:fontFamily="@font/ubuntu"
                     android:text="Claim"
+                    app:icon="@drawable/ic_baseline_card_giftcard_24"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/btw_item"/>
 

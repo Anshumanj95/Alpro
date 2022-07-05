@@ -8,8 +8,7 @@
     <fragment
         android:id="@+id/loginTabFragment"
         android:name="com.example.mistriji.LoginTabFragment"
-        android:label="fragment_login_tab"
-        tools:layout="@layout/fragment_login_tab" >
+        tools:layout="@layout/fragment_login_tab">
         <action
             android:id="@+id/action_loginTabFragment_to_otpFragment"
             app:destination="@id/otpFragment"
@@ -20,8 +19,8 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.mistriji.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        android:label="MistrJi"
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_loginTabFragment"
             app:destination="@id/loginTabFragment"
@@ -30,12 +29,15 @@
         <action
             android:id="@+id/action_mainFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_congoFragment"
+            app:destination="@id/congoFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/otpFragment"
         android:name="com.example.mistriji.OtpFragment"
-        android:label="fragment_otp"
-        tools:layout="@layout/fragment_otp" >
+        tools:layout="@layout/fragment_otp">
         <action
             android:id="@+id/action_otpFragment_to_mainFragment"
             app:destination="@id/mainFragment"
@@ -45,10 +47,36 @@
         <argument
             android:name="phoneNumber"
             app:argType="string" />
+        <argument
+            android:name="Username"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.mistriji.DetailsFragment"
-        android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        android:label="Account Details"
+        tools:layout="@layout/fragment_details">
+        <action
+            android:id="@+id/action_detailsFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/congoFragment"
+        android:name="com.example.mistriji.CongoFragment"
+        android:label="Congratulation"
+        tools:layout="@layout/fragment_congo">
+        <action
+            android:id="@+id/action_congoFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/congoFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="reward"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.mistriji.HistoryFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_history" />
 </navigation>

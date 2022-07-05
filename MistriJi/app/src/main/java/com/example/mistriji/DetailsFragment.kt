@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mistriji.databinding.FragmentDetailsBinding
@@ -20,8 +22,6 @@ class DetailsFragment : Fragment() {
     private val binding get()=_binding!!
     private  var mcurrUser: FirebaseUser? =Firebase.auth.currentUser
     private val TAG="DetailsFragment"
-    private var total_value=0;
-    lateinit var QRAdapter:QRAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,41 +34,38 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getAllCodes(mcurrUser!!)
-        setupRecyclerView()
+        binding.shimmer.visibility=View.VISIBLE
+        binding.shimmer.startShimmer()
+        getRedeemPoints(mcurrUser!!)
+        binding.history.setOnClickListener {
+            val action=DetailsFragmentDirections.actionDetailsFragmentToHistoryFragment()
+            findNavController().navigate(action)
+        }
 
     }
-    private fun getAllCodes(mCurrUser:FirebaseUser){
+    private fun getRedeemPoints(mCurrUser:FirebaseUser){
         val db=Firebase.firestore
-        val allQr=ArrayList<QRInfo>()
+        var total_value=0;
         db.collection("Users").document(mCurrUser.uid).collection("QRCodes").get().addOnSuccessListener {details->
-            for (i in 0 until details.documents.size){
-                val curr=QRInfo(details.documents[i].data?.get("name") as String,details.documents[i].data?.get("code") as String,details.documents[i].data?.get("redeem") as String)
-                allQr.add(curr)
-                total_value+=curr.redeem.toInt()
+            if(details!=null) {
+                for (i in 0 until details.documents.size) {
+                    val curr = details.documents[i].data?.get("redeem") as String
+                    total_value += curr.toInt()
+                }
+                binding.name.text=mCurrUser.displayName!!.uppercase()
+                binding.phoneNumber.text=mcurrUser!!.phoneNumber
+                binding.points.text = total_value.toString()
+                binding.shimmer.stopShimmer()
+                binding.shimmer.visibility = View.INVISIBLE
+                binding.card.visibility=View.VISIBLE
+                binding.layout.visibility = View.VISIBLE
             }
-            QRAdapter.differ.submitList(allQr)
-            binding.total.text=total_value.toString()
-            visibleAll()
+            else{
+                Log.d("getinfo","No such document")
+            }
 
         }.addOnFailureListener {
             Log.d(TAG,it.message.toString())
         }
     }
-    private fun setupRecyclerView(){
-        QRAdapter= QRAdapter()
-        binding.recyclerview.apply {
-            adapter=QRAdapter
-            layoutManager=LinearLayoutManager(activity)
-        }
-    }
-    private fun visibleAll(){
-        binding.progress.visibility=View.INVISIBLE
-        binding.name.visibility=View.VISIBLE
-        binding.rewardHistory.visibility=View.VISIBLE
-        binding.image.visibility=View.VISIBLE
-        binding.recyclerview.visibility=View.VISIBLE
-        binding.total.visibility=View.VISIBLE
-    }
-
 }

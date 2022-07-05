@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.addCallback
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -16,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
 import com.example.mistriji.databinding.FragmentMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -44,12 +44,14 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         codeScanner()
+        val navBar: BottomNavigationView = requireActivity().findViewById(R.id.menu)
+        navBar.visibility=View.VISIBLE
     }
     private fun codeScanner(){
         val activity=requireActivity()
         codeScanner= CodeScanner(activity,binding.scannerView)
         codeScanner.decodeCallback= DecodeCallback {
-            activity.runOnUiThread {
+            activity.runOnUiThread{
                 getInfo(it.toString())
             }
         }
@@ -58,7 +60,7 @@ class MainFragment : Fragment() {
         }
         binding.claim.setOnClickListener {
             claimedValue()
-            val action=MainFragmentDirections.actionMainFragmentToDetailsFragment()
+            val action=MainFragmentDirections.actionMainFragmentToCongoFragment(information.redeem)
             findNavController().navigate(action)
         }
 
@@ -69,11 +71,12 @@ class MainFragment : Fragment() {
 
         document.update("Status",QRStatuses.REDEEMED).addOnSuccessListener {
             Log.d(TAG,"Updated")
-            db.collection("Users").document(mcurrUser!!.uid).collection("QRCodes").add(information).addOnSuccessListener {
-                Log.d(TAG,"added")
-            }.addOnFailureListener {
-                Log.d(TAG,"failed")
-            }
+        }.addOnFailureListener {
+            Log.d(TAG,"failed")
+        }
+
+        db.collection("Users").document(mcurrUser!!.uid).collection("QRCodes").add(information).addOnSuccessListener {
+            Log.d(TAG,"added")
         }.addOnFailureListener {
             Log.d(TAG,"failed")
         }
@@ -142,8 +145,9 @@ class MainFragment : Fragment() {
             binding.reward.text=information.redeem
             binding.card.visibility=View.VISIBLE
             if(information.status==QRStatuses.REDEEMED){
-                binding.claim.visibility=View.INVISIBLE
+                binding.card.visibility=View.INVISIBLE
                 Toast.makeText(activity,"Already Claimed",Toast.LENGTH_SHORT).show()
+                onResume()
             }
         }
         else{

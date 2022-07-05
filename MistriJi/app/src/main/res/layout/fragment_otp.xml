@@ -7,18 +7,32 @@
     tools:context=".OtpFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@drawable/bg"
         android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ubuntu_mono"
+            android:textAllCaps="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="20sp"
+            android:layout_marginTop="150dp"
+            android:textAlignment="center"
+            android:textStyle="bold"/>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/card2"
-        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/card"
+        app:layout_constraintTop_toBottomOf="@id/text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="20dp"
         android:elevation="5dp"
         app:cardMaxElevation="10dp">
 
@@ -26,58 +40,62 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/enterOtp"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/edittext"
-                android:hint="Enter Otp"
-                android:paddingStart="10dp"
-                android:inputType="phone"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+
+            <in.aabhasjindal.otptextview.OtpTextView
+                android:id="@+id/enter_otp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bar_enabled="true"
+                app:bar_height="2dp"
+                app:height="40dp"
+                app:layout_constraintBottom_toTopOf="@id/counttime"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="@dimen/btw_item"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="RtlSymmetry" />
-
+                app:length="6"
+                app:otp_text_size="24dp"
+                app:width="40dp" />
             <TextView
-                android:id="@+id/counttime"
                 android:layout_width="wrap_content"
-                android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@id/enterOtp"
-                app:layout_constraintStart_toStartOf="@id/enterOtp"
-                app:layout_constraintEnd_toEndOf="@id/enterOtp"
-                android:textSize="15sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/counttime"
+                app:layout_constraintTop_toBottomOf="@id/enter_otp"
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="00:00"
+                android:fontFamily="@font/ubuntu"
                 android:layout_marginTop="@dimen/btw_item"
-                android:layout_marginBottom="@dimen/btw_item"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_height="wrap_content" />
+                app:layout_constraintBottom_toTopOf="@id/verifyOtp"/>
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/verifyOtp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/counttime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:icon="@drawable/ic_baseline_done_24"
+                android:backgroundTint="#FFEE58"
+                app:shapeAppearance="@style/ShapeAppearanceOverlay.MyApp.Button.Rounded"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:fontFamily="@font/ubuntu"
+                android:layout_margin="@dimen/btw_item"
+                android:text="Verify Otp"/>
+            <ProgressBar
+                android:id="@+id/bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/counttime"
+                android:visibility="invisible"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/verify"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="@dimen/btw_item"
-            android:src="@drawable/ic_baseline_done_24"
-            android:backgroundTint="#DA6003"
-            android:layout_marginBottom="@dimen/btw_item"
-            app:layout_constraintEnd_toEndOf="parent" />
-        <ProgressBar
-            android:id="@+id/bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="@dimen/btw_item"
-            android:layout_marginBottom="@dimen/btw_item"
-            android:visibility="invisible"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

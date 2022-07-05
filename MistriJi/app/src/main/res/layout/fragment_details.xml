@@ -5,73 +5,152 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DetailsFragment">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:visibility="invisible"
+            android:id="@+id/card"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:visibility="visible"/>
-
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="0dp"
-            android:visibility="invisible"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/common_google_signin_btn_icon_light" />
-        <TextView
-            android:visibility="invisible"
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="Name"
-            android:layout_margin="@dimen/btw_item"/>
-        <TextView
-            android:id="@+id/total"
+            app:cardCornerRadius="20dp"
+            app:cardBackgroundColor="#00BCD4">
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="@dimen/btw_item"
+                android:layout_marginBottom="@dimen/btw_item"
+                android:layout_gravity="center"
+                android:id="@+id/image"
+                android:src="@drawable/user"/>
+        </androidx.cardview.widget.CardView>
+        <LinearLayout
+            android:id="@+id/layout"
             android:visibility="invisible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/name"
-            app:layout_constraintStart_toStartOf="@id/name"
-            app:layout_constraintEnd_toEndOf="@id/name"
-            android:text="1230"
-            android:layout_margin="@dimen/btw_item"/>
-        <TextView
-            android:visibility="invisible"
-            android:id="@+id/reward_history"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/total"
-            app:layout_constraintStart_toStartOf="@id/name"
-            app:layout_constraintEnd_toEndOf="@id/name"
-            android:text="History"
-            android:textAlignment="center"
-            android:layout_margin="@dimen/btw_item"/>
-        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:id="@+id/recyclerview"
-            android:visibility="invisible"
-            app:layout_constraintTop_toBottomOf="@id/reward_history"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/card"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/adapter"
-            android:layout_margin="@dimen/btw_item"/>
+            android:layout_marginStart="@dimen/btw_item"
+            android:layout_marginTop="@dimen/btw_item">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="@dimen/btw_item"
+                android:layout_marginBottom="@dimen/btw_item"
+                android:fontFamily="@font/ubuntu"
+                android:text="NAME"
+                android:textSize="15sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_account_box_24"/>
+                <TextView
+                    android:layout_marginStart="@dimen/btw_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@id/name"
+                    android:fontFamily="@font/ubuntu_mono"
+                    android:text=""
+                    android:textSize="18sp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mobile Number"
+                android:textAllCaps="true"
+                android:fontFamily="@font/ubuntu"
+                android:layout_marginEnd="@dimen/btw_item"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="@dimen/btw_item"
+                android:textSize="15sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_phone_24"
+                    android:layout_marginTop="@dimen/btw_item"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@id/phoneNumber"
+                android:fontFamily="@font/ubuntu_mono"
+                android:layout_marginStart="@dimen/btw_item"
+                android:layout_marginTop="@dimen/btw_item"
+                android:text=""
+                android:textSize="18sp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Points"
+                android:layout_marginEnd="@dimen/btw_item"
+                android:textAllCaps="true"
+                android:fontFamily="@font/ubuntu"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="@dimen/btw_item"
+                android:textSize="15sp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/btw_item"
+                    android:src="@drawable/ic_baseline_attach_money_24"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/points"
+                android:fontFamily="@font/ubuntu_mono"
+                android:layout_marginStart="@dimen/btw_item"
+                android:layout_marginTop="@dimen/btw_item"
+                android:text=""
+                android:textSize="18sp"/>
+            </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="history"
+                    android:fontFamily="@font/ubuntu"
+                    app:iconGravity="end"
+                    app:icon="@drawable/ic_baseline_navigate_next_24"
+                    android:textAlignment="textStart"
+                    android:id="@+id/history"
+                    android:layout_marginEnd="@dimen/btw_item"
+                    android:textColor="@android:color/secondary_text_light"
+                    android:layout_marginStart="40dp"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
+            </LinearLayout>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+            <include layout="@layout/shimmer_layout"/>
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </FrameLayout>
